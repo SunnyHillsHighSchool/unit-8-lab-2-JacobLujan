@@ -367,8 +367,50 @@ public class Picture
   }
 
    ////////////////////// methods ///////////////////////////////////////
+  public void flipHorizontal() 
+  { 
+    //create an array of pixels 
+    Pixel[][] data = this.getPixels2D(); 
+    //create 2 Pixel variables 
+    Pixel leftPixel = null; 
+    Pixel rightPixel = null; 
+    //nested loops to interate through all of the pixels 
+    for(int r =0; r<data.length;r++)
+    { 
+       for(int c =0; c<data[0].length/2;c++) 
+        { 
+          //get current left pixel 
+          leftPixel=data[r][c]; 
+          //get current right pixel 
+          rightPixel=data[r][data[0].length-1-c]; //assign right pixel's color to a temp variables 
+          Color tempColor = rightPixel.getColor(); //interchange the pixel colors 
+          rightPixel.setColor(leftPixel.getColor()); 
+          leftPixel.setColor(tempColor); 
+        } 
+    }
+  }
 
-   
-
+  public void flipVertical() 
+  { 
+    //create an array of pixels 
+    Pixel[][] data = this.getPixels2D(); 
+    //create 2 Pixel variables 
+    Pixel topPixel = null; 
+    Pixel bottomPixel = null; 
+    //nested loops to interate through all of the pixels 
+    for(int r =0; r<data.length/2;r++)
+    { 
+       for(int c =0; c<data[0].length;c++) 
+        { 
+          //get current left pixel 
+          topPixel=data[r][c]; 
+          //get current right pixel 
+          bottomPixel=data[data.length-1-r][c]; //assign right pixel's color to a temp variables 
+          Color tempColor = bottomPixel.getColor(); //interchange the pixel colors 
+          bottomPixel.setColor(topPixel.getColor()); 
+          topPixel.setColor(tempColor); 
+        } 
+    }
+  }
 
 } // this } is the end of class Picture, put all new methods before this
